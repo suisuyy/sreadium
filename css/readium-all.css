@@ -1,4 +1,10 @@
 /* # m customlizetion */
+
+body {
+    margin: 0;
+}
+
+
 #aboutButt1 {
     display: none !important;
 }
@@ -21,10 +27,13 @@
     border-right: 0px solid transparent !important;
 }
 
+/* this seems odd because i really need the navbar at left */
 .navbar-right {
-    float: right !important;
-    margin-right: -15px;
-    padding-right: 30px;
+    float: left !important;
+}
+
+.navbar-left {
+    display: none;
 }
 
 #reading-area {
