@@ -32,6 +32,8 @@ body {
     float: left !important;
 }
 
+
+
 .navbar-left {
     display: none;
 }
@@ -9909,4 +9911,14 @@ body.list-view .details {
     display: inline-block;
     vertical-align: middle;
     line-height: normal
+}
+
+
+
+/* my css */
+@media (min-width: 768px) {
+    .navbar-right {
+        float: left !important;
+        margin-right: -15px;
+    }
 }
