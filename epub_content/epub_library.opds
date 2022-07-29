@@ -24,7 +24,7 @@
 <entry>
   <title>ts 2d graphic render</title>
   <author>
-    <name>test</name>
+    <name>unknow</name>
   </author>
   <link type="application/epub" href="ts_graphic_render_practice.epub"/>
  
@@ -33,24 +33,34 @@
 <entry>
   <title>计算机网络</title>
   <author>
-    <name>test</name>
+    <name>unknow</name>
   </author>
   <link type="application/epub" href="cnv3.epub"/>
  
 </entry>
 
+<entry>
+  <title>csapp</title>
+  <author>
+    <name>unknow</name>
+  </author>
+  <link type="application/epub" href="csapp.epub"/>
+ 
+</entry>
 
 <entry>
-  <title>ref entry</title>
+  <title>more</title>
   <author>
-    <name>https://github.com/daisy/epub-accessibility-tests</name>
+    <name>readium.org</name>
   </author>
-  <link type="image/png" href="epub_tests_a11y.png" rel="http://opds-spec.org/image/thumbnail"/>
-  <link type="application/atom+xml;profile=opds-catalog;kind=navigation" href="epub_tests_a11y.opds"/>  
+  <!-- <link type="image/png" href="epub_tests_a11y.png" rel="http://opds-spec.org/image/thumbnail"/> -->
+  <link type="application/atom+xml;profile=opds-catalog;kind=navigation" href="https://readium.firebaseapp.com/epub_content/epub_library.opds"/>  
   <updated>2016-02-12T00:00:00Z</updated>
   <id>READIUM_OPDS_0123456789_14</id>
 <link type="application/noop" href="DUMMY_ACQUISITION" rel="http://opds-spec.org/acquisition"/>
 
 </entry>
+
+
 
 </feed>

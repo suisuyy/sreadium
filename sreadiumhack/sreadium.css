@@ -1,0 +1,99 @@
+/* # m customlizetion */
+
+body {
+    margin: 0;
+}
+
+
+#aboutButt1 {
+    display: none !important;
+}
+
+#addbutt {
+    display: none !important;
+}
+
+
+#right-page-btn {
+    display: none !important;
+}
+
+#left-page-btn {
+    display: none !important;
+}
+
+#epub-reader-frame {
+    border-left: 0px solid transparent !important;
+    border-right: 0px solid transparent !important;
+}
+
+/* this seems odd because i really need the navbar at left */
+.navbar-right {
+    float: left !important;
+}
+
+
+
+.navbar-left {
+    display: none;
+}
+
+#reading-area {
+    text-align: center;
+    position: absolute;
+    right: 0 !important;
+    top: 0 !important;
+    overflow: hidden;
+}
+
+.toc-visible #readium-toc-body {
+    display: inline-block;
+    width: 50% !important;
+}
+
+.toc-visible #reading-area {
+    left: 50% !important;
+}
+
+.navbar .btn-group>.btn.icon-full-screen {
+    display: inherit !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-right {
+        float: left !important;
+        margin-right: -15px;
+    }
+}
+
+
+body>hypothesis-sidebar {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+/* my elements */
+#bookMarkContainer {
+    height: 70%;
+    max-width: 70%;
+    padding-top: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: #4d4d4d;
+    overflow: scroll !important;
+
+}
+
+.bookmarkli {
+    font-size: 2em;
+    margin: 1em;
+}
