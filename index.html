@@ -7,6 +7,7 @@
 
     <link href="images/readium_favicon.png" rel="shortcut icon" />
     <link href="images/readium-touch-icon.png" rel="apple-touch-icon" />
+    <link href="./manifest.json" rel="manifest" />
 
     <style>
         .library-item {
@@ -128,6 +129,19 @@
 </body>
 
 
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => {
+                    console.log('Service worker registered! 😎', reg);
+                })
+                .catch(err => {
+                    console.log('😥 Service worker registration failed: ', err);
+                });
+        });
+    }
+</script>
 
 
 </html>

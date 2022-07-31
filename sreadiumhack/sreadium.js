@@ -1,4 +1,6 @@
 const MODE = "";
+const cacheName = 'cache-v1';
+
 
 const DEFAULT_CONFIG = {
     "scroll": "scroll-continuous",
@@ -52,7 +54,7 @@ let view = {
         this.renderBookMarkBtn(navbar);
 
 
-        document.querySelector("#app-navbar > div.btn-group.navbar-right > button.btn.icon-library").addEventListener("click", () => {
+        document.querySelector("#app-navbar > div.btn-group.navbar-right > button.btn.icon-library")?.addEventListener("click", () => {
             document.querySelector("#bookMarkContainer")?.remove();
         });
     },
@@ -81,8 +83,65 @@ let view = {
             }
         });
 
-    }
+    },
+    renderOpenLocalBtn: function (navbar) {
+        if (document.querySelector("#openLocalBtn") !== null) {
+            return;
+        }
+        let openLocalBtn = document.createElement("button");
+        openLocalBtn.className = "btn icon-add";
+        openLocalBtn.id = "openLocalBtn";
+        openLocalBtn.innerHTML =
+            `<label  for=bookfile class="glyphicon glyphicon-file" aria-hidden="true"></label>
+            <input type="file" name="bookfile" id="bookfile" style="display: none" />`;
+        navbar.appendChild(openLocalBtn)
 
+        document.querySelector("#bookfile").addEventListener("change", (ev) => {
+            var files = ev.target.files || ev.originalEvent.dataTransfer.files;
+            if (files.length) {
+                var file = files[0];
+                console.log("File drag-n-drop:");
+                console.log(file.name);
+                console.log(file.type);
+                console.log(file.size);
+
+                if (file.type == "application/epub+zip" || (/\.epub[3?]$/.test(file.name))) {
+                    //this totally a hack bad hack, Epublibrary is from readium-js-viewer_all.js line206
+                    EpubLibrary(window).triggerHandler('readepub', { epub: file });
+                }
+            }
+        })
+
+
+
+
+    },
+    renderDownloadBtn: function () {
+        document.querySelectorAll('.read').forEach(elem => {
+            console.log(elem?.dataset?.book)
+            let btn = document.createElement("button");
+            btn.classList.add(['downloadBtn', 'btn', 'icon-bookmark'])
+            btn.style.width = "auto";
+            btn.style.border = "0";
+            btn.style.backgroundColor = "#ffffff00";
+            btn.style.color = "white"
+            btn.style.position = "absolute";
+            btn.style.top = "5%";
+            btn.style.right = "5%";
+
+            btn.innerHTML = `<span class="glyphicon glyphicon-download" style="font-size:large"/>`
+            elem.appendChild(btn);
+
+            btn.addEventListener('click', evt => {
+                alert("Download start");
+                evt.stopPropagation();
+                caches.open(cacheName).then(cache => {
+                    cache.addAll([btn.parentElement.dataset.book]).then(res => alert('Downloaded ' + btn.parentElement.dataset.book))
+                })
+
+            })
+        })
+    }
     ,
     renderBookmarkView: function (container) {
         document.querySelector("#bookMarkContainer")?.remove();
@@ -128,10 +187,10 @@ window.onload = function () {
     }
     let intervalId = setInterval(() => {
         let navbar;
-        if (navbar = document.querySelector("#app-navbar > div.btn-group.navbar-right")) {
+        if (navbar = document.querySelector("#app-navbar")) {
             clearInterval(intervalId);
-            view.init(navbar);
-
+            view.renderOpenLocalBtn(navbar)
+            view.renderDownloadBtn();
         }
     }, 1000)
 
