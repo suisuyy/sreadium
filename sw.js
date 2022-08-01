@@ -42,7 +42,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    event.respondWith(caches.match(event.request, { ignoreSearch: true })
+    event.respondWith(caches.match(event.request, { ignoreSearch: true, ignoreMethod: true, ignoreVary: true })
         .then(cachedResponse => {
             if (cachedResponse) {
                 console.log("sw:Cache matched the request:", event.request.url)
