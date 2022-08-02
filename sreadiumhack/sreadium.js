@@ -52,12 +52,25 @@ const appModel = {
 let view = {
     init: function (navbar) {
         this.renderBookMarkBtn(navbar);
-
-
         document.querySelector("#app-navbar > div.btn-group.navbar-right > button.btn.icon-library")?.addEventListener("click", () => {
             document.querySelector("#bookMarkContainer")?.remove();
         });
     },
+    renderLibraryNavbarBtnAlways: function (navbar) {
+
+        setInterval(() => {
+            if (getBookName() !== null) {
+                return;
+            }
+            if (document.querySelector("#openLocalBtn") === null) {
+                this.renderOpenLocalBtn(navbar);
+                this.renderShowDownloadBtn(navbar);
+                console.log("rendered openlocal")
+            }
+        }, 2000);
+
+    }
+    ,
     render: function (navbar) {
 
         this.renderBookMarkBtn(navbar);
@@ -116,11 +129,31 @@ let view = {
 
 
     },
-    renderDownloadBtn: function () {
+
+    renderShowDownloadBtn: function (navbar) {
+        if (document.querySelector("#showDownloadBtn") !== null) {
+            return;
+        }
+        let showDownloadBtn = document.createElement("button");
+        showDownloadBtn.className = "btn icon-add";
+        showDownloadBtn.id = "showDownloadBtn";
+        showDownloadBtn.innerHTML =
+            `<span   class="glyphicon glyphicon-download" aria-hidden="true"></span>`;
+        navbar.appendChild(showDownloadBtn)
+
+        showDownloadBtn.addEventListener("click", (ev) => {
+            this.renderDownloadBtns();
+        })
+
+
+
+
+    },
+    renderDownloadBtns: function () {
         document.querySelectorAll('.read').forEach(elem => {
             console.log(elem?.dataset?.book)
             let btn = document.createElement("button");
-            btn.classList.add(['downloadBtn', 'btn', 'icon-bookmark'])
+            btn.classList.add(['downloadBtn', 'btn',])
             btn.style.width = "auto";
             btn.style.border = "0";
             btn.style.backgroundColor = "#ffffff00";
@@ -182,15 +215,13 @@ let view = {
 //show object on page
 window.onload = function () {
     if (MODE === "D") {
-
         showObjectOnPage(appModel);
     }
     let intervalId = setInterval(() => {
         let navbar;
         if (navbar = document.querySelector("#app-navbar")) {
             clearInterval(intervalId);
-            view.renderOpenLocalBtn(navbar)
-            view.renderDownloadBtn();
+            view.renderLibraryNavbarBtnAlways(navbar);
         }
     }, 1000)
 
