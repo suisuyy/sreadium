@@ -8,13 +8,19 @@
 <link rel="start" href="epub_library.opds" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
 
 
-
-
+<entry>
+  <title>README/使用说明</title>
+  <author>
+    <name>sreadium</name>
+  </author>
+  <link type="application/epub" href="./readme_sreadium.epub"/>
+ 
+</entry>
 
 <entry>
-  <title>alice</title>
+  <title>Alice's Adventures in Wonderland</title>
   <author>
-    <name>alice</name>
+    <name>unknow</name>
   </author>
   <link type="application/epub" href="alice.epub" rel="http://opds-spec.org/acquisition"/>
   <updated>2016-02-12T00:00:00Z</updated>
@@ -22,15 +28,43 @@
 </entry>
 
 
-
 <entry>
-  <title>计网基础与p2p打洞</title>
+  <title>Debain handbook</title>
   <author>
     <name>unknow</name>
   </author>
-  <link type="application/epub" href="cnv3.epub"/>
+  <link type="application/epub" href="./debian-handbook-en.epub"/>
  
 </entry>
+
+
+<entry>
+  <title>Debain手册</title>
+  <author>
+    <name>unknow</name>
+  </author>
+  <link type="application/epub" href="./debian-handbook-cn.epub"/>
+ 
+</entry>
+
+<entry>
+  <title>Computer Networks A Systems Approach</title>
+  <author>
+    <name>unknow</name>
+  </author>
+  <link type="application/epub" href="./ComputerNetworksASystemsApproach.epub"/>
+ 
+</entry>
+
+<entry>
+  <title>A Practical Approach To Understanding Music Theory</title>
+  <author>
+    <name>unknow</name>
+  </author>
+  <link type="application/epub" href="./A-Practical-Approach-To-Understanding-Music-Theory.epub"/>
+ 
+</entry>
+
 
 
 <entry>
@@ -45,17 +79,7 @@
 <link type="application/noop" href="DUMMY_ACQUISITION" rel="http://opds-spec.org/acquisition"/>
 </entry>
 
-<entry>
-  <title>testlib</title>
-  <author>
-    <name>unknow</name>
-  </author>
-  <!-- <link type="image/png" href="epub_tests_a11y.png" rel="http://opds-spec.org/image/thumbnail"/> -->
-  <link type="application/atom+xml;profile=opds-catalog;kind=navigation" href="http://opds.oreilly.com/opds/"/>  
-  <updated>2016-02-12T00:00:00Z</updated>
-  <id>READIUM_OPDS_0123456789_14</id>
-<link type="application/noop" href="DUMMY_ACQUISITION" rel="http://opds-spec.org/acquisition"/>
-</entry>
+
 
 
 <entry>

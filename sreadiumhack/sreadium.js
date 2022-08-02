@@ -1,15 +1,38 @@
+// #debug enable
 const MODE = "";
+
+
 const cacheName = 'cache-v1';
-
-
 const DEFAULT_CONFIG = {
     "scroll": "scroll-continuous",
 }
+
+window.sreadium = {};
 
 //set scroll mode to scroll-continuous use config strored in localStorage with key "reader"
 let localConfig = getObjFromStorage("reader");
 localConfig.scroll = DEFAULT_CONFIG.scroll;
 setObjToStorage("reader", localConfig);
+
+
+//show object on page
+window.onload = function () {
+    if (MODE === "D") {
+        showObjectOnPage(appModel);
+    }
+    let intervalId = setInterval(() => {
+        let navbar;
+        if (navbar = document.querySelector("#app-navbar")) {
+            clearInterval(intervalId);
+
+            view.renderLibraryNavbarBtnAlways(navbar);
+
+        }
+
+    }, 1000)
+
+
+}
 
 // bookMarks look lik this: 
 //{
@@ -51,23 +74,60 @@ const appModel = {
 
 let view = {
     init: function (navbar) {
-        this.renderBookMarkBtn(navbar);
-        document.querySelector("#app-navbar > div.btn-group.navbar-right > button.btn.icon-library")?.addEventListener("click", () => {
-            document.querySelector("#bookMarkContainer")?.remove();
-        });
+        return;
     },
     renderLibraryNavbarBtnAlways: function (navbar) {
 
         setInterval(() => {
             if (getBookName() !== null) {
+                this.renderBookMarkBtn(navbar)
                 return;
             }
+            document.querySelector("#bookMarkContainer")?.remove();
             if (document.querySelector("#openLocalBtn") === null) {
                 this.renderOpenLocalBtn(navbar);
                 this.renderShowDownloadBtn(navbar);
-                console.log("rendered openlocal")
+                this.renderUpdateBtn(navbar)
+                console.log("rendered openlocal and download button")
             }
-        }, 2000);
+        }, 1000);
+
+    },
+    renderUpdateBtn: function (navbar) {
+        if (document.querySelector("#updateBtn") !== null) {
+            return;
+        }
+        let updateBtn = document.createElement("button");
+        updateBtn.className = "btn icon-add";
+        updateBtn.id = "updateBtn";
+        updateBtn.innerHTML =
+            `<span   class="glyphicon glyphicon-refresh" aria-hidden="true"></span>`;
+        navbar.appendChild(updateBtn)
+
+        updateBtn.addEventListener("click", (ev) => {
+            confirm("Update app now?") &&
+                navigator.serviceWorker?.getRegistrations()
+                    .then(function (registrations) {
+                        for (let registration of registrations) {
+                            registration.unregister()
+                        }
+                    })
+                    .then(() => {
+                        caches.keys().
+                            then(function (names) {
+                                for (let name of names)
+                                    caches.delete(name);
+                            })
+                            .then(res => {
+                                alert('app updated,books are needed redownload')
+                                location.reload();
+                            });
+                    });
+
+        })
+
+
+
 
     }
     ,
@@ -87,7 +147,8 @@ let view = {
         bookMarkBtn.id = "bookMarkBtn";
         bookMarkBtn.innerHTML = `<span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>`;
         navbar.appendChild(bookMarkBtn)
-        bookMarkBtn.addEventListener("click", () => {
+        bookMarkBtn.addEventListener("click", (evt) => {
+            evt.stopPropagation();
             if (document.querySelector("#bookMarkContainer") !== null) {
                 document.querySelector("#bookMarkContainer").remove();
             }
@@ -113,14 +174,14 @@ let view = {
             var files = ev.target.files || ev.originalEvent.dataTransfer.files;
             if (files.length) {
                 var file = files[0];
-                console.log("File drag-n-drop:");
+                console.log("File open:");
                 console.log(file.name);
                 console.log(file.type);
                 console.log(file.size);
 
                 if (file.type == "application/epub+zip" || (/\.epub[3?]$/.test(file.name))) {
                     //this totally a hack bad hack, Epublibrary is from readium-js-viewer_all.js line206
-                    EpubLibrary(window).triggerHandler('readepub', { epub: file });
+                    sreadium.EpubLibrary(window).triggerHandler('readepub', { epub: file });
                 }
             }
         })
@@ -151,28 +212,43 @@ let view = {
     },
     renderDownloadBtns: function () {
         document.querySelectorAll('.read').forEach(elem => {
-            console.log(elem?.dataset?.book)
-            let btn = document.createElement("button");
-            btn.classList.add(['downloadBtn', 'btn',])
-            btn.style.width = "auto";
-            btn.style.border = "0";
-            btn.style.backgroundColor = "#ffffff00";
-            btn.style.color = "white"
-            btn.style.position = "absolute";
-            btn.style.top = "5%";
-            btn.style.right = "5%";
+            let bookUrl = elem?.dataset?.book;
+            if (!bookUrl) {
+                return;
+            }
 
-            btn.innerHTML = `<span class="glyphicon glyphicon-download" style="font-size:large"/>`
-            elem.appendChild(btn);
+            caches.open(cacheName).then(cache => {
+                if (cache) {
+                    cache.match(bookUrl).then(res => {
+                        if (res) {
+                            return;
+                        }
+                        let btn = document.createElement("button");
+                        btn.classList.add(['downloadBtn', 'btn',])
+                        btn.style.width = "auto";
+                        btn.style.border = "0";
+                        btn.style.backgroundColor = "#ffffff00";
+                        btn.style.color = "white"
+                        btn.style.position = "absolute";
+                        btn.style.top = "5%";
+                        btn.style.right = "5%";
 
-            btn.addEventListener('click', evt => {
-                alert("Download start");
-                evt.stopPropagation();
-                caches.open(cacheName).then(cache => {
-                    cache.addAll([btn.parentElement.dataset.book]).then(res => alert('Downloaded ' + btn.parentElement.dataset.book))
-                })
+                        btn.innerHTML = `<span class="glyphicon glyphicon-download" style="font-size:large"/>`
+                        elem.appendChild(btn);
+
+                        btn.addEventListener('click', evt => {
+                            alert("Download start");
+                            evt.stopPropagation();
+                            caches.open(cacheName).then(cache => {
+                                cache.addAll([elem.dataset.book]).then(res => alert('Downloaded Successful\n' + btn.parentElement.dataset.book))
+                            })
+
+                        })
+                    })
+                }
 
             })
+
         })
     }
     ,
@@ -210,58 +286,6 @@ let view = {
     }
 
 }
-
-
-//show object on page
-window.onload = function () {
-    if (MODE === "D") {
-        showObjectOnPage(appModel);
-    }
-    let intervalId = setInterval(() => {
-        let navbar;
-        if (navbar = document.querySelector("#app-navbar")) {
-            clearInterval(intervalId);
-            view.renderLibraryNavbarBtnAlways(navbar);
-        }
-    }, 1000)
-
-
-}
-
-
-
-
-
-
-//TODO:bookmark support
-
-
-//TODO: pin navi-bar
-
-
-function sreadiumInitConfig(e, n) {
-    console.log("sreadiumInitConfig start");
-    if (navbar = document.querySelector("#app-navbar > div.btn-group.navbar-right")) {
-        view.init(navbar);
-
-    }
-
-    // READIUM.reader.updateSettings({ scroll: "scroll-continuous" })
-
-    // READIUM.reader.on(ReadiumSDK.Events.CONTENT_DOCUMENT_LOADED, function ($iframe, spineItem) {
-    //     // do something
-    //     console.log("sreadium init")
-
-    // });
-
-
-}
-
-
-
-
-
-
 
 
 
@@ -322,17 +346,6 @@ function showObjectOnPage(obj, w, h) {
         objDispalyer.value = JSON.stringify(obj, null, 4);
     }, 500);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //unsed code
