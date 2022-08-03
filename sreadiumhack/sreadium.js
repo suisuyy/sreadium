@@ -31,7 +31,6 @@ window.onload = function () {
 
     }, 1000)
 
-
 }
 
 // bookMarks look lik this: 
@@ -211,6 +210,11 @@ let view = {
 
     },
     renderDownloadBtns: function () {
+
+        if (document.querySelector('.downloadBtn')) {
+            return;
+        }
+        console.log('start render downloadBtn')
         document.querySelectorAll('.read').forEach(elem => {
             let bookUrl = elem?.dataset?.book;
             if (!bookUrl) {
@@ -224,7 +228,7 @@ let view = {
                             return;
                         }
                         let btn = document.createElement("button");
-                        btn.classList.add(['downloadBtn', 'btn',])
+                        btn.classList.add(['downloadBtn',])
                         btn.style.width = "auto";
                         btn.style.border = "0";
                         btn.style.backgroundColor = "#ffffff00";
@@ -240,7 +244,10 @@ let view = {
                             alert("Download start");
                             evt.stopPropagation();
                             caches.open(cacheName).then(cache => {
-                                cache.addAll([elem.dataset.book]).then(res => alert('Downloaded Successful\n' + btn.parentElement.dataset.book))
+                                cache.addAll([elem.dataset.book]).then(res => {
+                                    alert('Downloaded Successful\n' + btn.parentElement.dataset.book)
+                                    btn.remove();
+                                })
                             })
 
                         })
