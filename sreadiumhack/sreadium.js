@@ -1,3 +1,5 @@
+const { inherit } = require("hammerjs");
+
 // #debug enable
 const MODE = "";
 
@@ -25,7 +27,7 @@ window.onload = function () {
         if (navbar = document.querySelector("#app-navbar")) {
             clearInterval(intervalId);
 
-            view.renderLibraryNavbarBtnAlways(navbar);
+            view.renderAlways();
 
         }
 
@@ -75,11 +77,16 @@ let view = {
     init: function (navbar) {
         return;
     },
-    renderLibraryNavbarBtnAlways: function (navbar) {
+    renderAlways: function () {
+        let navbar = document.querySelector("#app-navbar");
 
         setInterval(() => {
             if (getBookName() !== null) {
                 this.renderBookMarkBtn(navbar)
+                let tocContaniner = document.querySelectorAll("#readium-toc-body");
+                if (tocContaniner) {
+                    this.renderTocFoldBtn(tocContaniner);
+                }
                 return;
             }
             document.querySelector("#bookMarkContainer")?.remove();
@@ -92,6 +99,40 @@ let view = {
         }, 1000);
 
     },
+    renderTocFoldBtn: function (tocContaniner) {
+        let tocBody = document.querySelector("#readium-toc-body");
+        let tocULs = tocBody.querySelectorAll("ol");
+
+        // let tocLis = document.querySelectorAll("#readium-toc-body > ol > li");
+        tocULs.forEach(elm => {
+            if (elm) {
+                if (elm.parentElement.querySelector(".foldBtn")) {
+                    return;
+                }
+                if (elm.parentElement !== tocBody) {
+
+                    elm.style.display = "none"
+                }
+                let foldBtn = document.createElement("button");
+                foldBtn.innerHTML = "+";
+                foldBtn.classList.add("foldBtn");
+                foldBtn.style.border = 0;
+                foldBtn.style.fontSize = "x-large";
+                elm.parentElement.prepend(foldBtn);
+
+                foldBtn.addEventListener('click', evt => {
+                    console.log("fold or unfold")
+                    if (elm.style.display !== 'none') {
+                        elm.style.display = 'none';
+                    }
+                    else {
+                        elm.style.display = 'block';
+                    }
+                })
+            }
+        })
+    }
+    ,
     renderUpdateBtn: function (navbar) {
         if (document.querySelector("#updateBtn") !== null) {
             return;

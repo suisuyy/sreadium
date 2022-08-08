@@ -16,7 +16,7 @@ const precacheResources = [
     './index.html',
     './manifest.json',
     './css/annotations.css', 'css/readium-all.css',
-    './scripts/readium-js-viewer_all.js', './scripts/mathjax/MathJax.js', './scripts/zip/deflate.js', './scripts/zip/inflate.js ', './scripts/zip/z-worker.js',
+    './scripts/readium-js-viewer_all.js', './scripts/mathjax/MathJax.js', './scripts/zip/deflate.js', './scripts/zip/inflate.js ', './scripts/zip/z-worker.js', './scripts/zip/deflate.js.map', './scripts/zip/inflate.js.map', './scripts/zip/z-worker.js.map',
     './sreadiumhack/sreadium.css', './sreadiumhack/sreadium.js', './sreadiumhack/icon/icon192.png',
     './images/glyphicons_115_text_smaller.png', './images/glyphicons_116_text_bigger.png', './images/margin1_off.png', './images/margin4_off.png', './images/ico_singlepage_up.png', './images/ico_doublepage_up.png', './images/about_readium_logo.png', './images/partner_logos.png', './images/readium_favicon.png',
     './images/covers/cover1.jpg', './images/covers/cover2.jpg', './images/covers/cover3.jpg', './images/covers/cover4.jpg', './images/covers/cover5.jpg', './images/covers/cover6.jpg', './images/covers/cover7.jpg', '/images/covers/cover8.jpg',

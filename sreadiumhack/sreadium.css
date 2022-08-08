@@ -91,6 +91,9 @@ body {
     bottom: 36px;
 }
 
+#readium-toc-body>h1 {
+    font-size: large;
+}
 
 
 .navbar .btn-group>.btn.icon-full-screen {
