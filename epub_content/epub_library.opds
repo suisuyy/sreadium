@@ -17,25 +17,6 @@
  
 </entry>
 
-<entry>
-  <title>Alice's Adventures in Wonderland</title>
-  <author>
-    <name>unknow</name>
-  </author>
-  <link type="application/epub" href="alice.epub" rel="http://opds-spec.org/acquisition"/>
-  <updated>2016-02-12T00:00:00Z</updated>
-  <id>READIUM_OPDS_0123456789_1</id>
-</entry>
-
-
-<entry>
-  <title>Debian/linux handbook</title>
-  <author>
-    <name>unknow</name>
-  </author>
-  <link type="application/epub" href="./debian-handbook-en.epub"/>
- 
-</entry>
 
 
 <entry>
@@ -47,14 +28,7 @@
  
 </entry>
 
-<entry>
-  <title>Computer Networks A Systems Approach</title>
-  <author>
-    <name>unknow</name>
-  </author>
-  <link type="application/epub" href="./ComputerNetworksASystemsApproach.epub"/>
- 
-</entry>
+
 
 <entry>
   <title>A Practical Approach To Understanding Music Theory</title>
@@ -73,7 +47,7 @@
     <name>sreadium</name>
   </author>
   <!-- <link type="image/png" href="epub_tests_a11y.png" rel="http://opds-spec.org/image/thumbnail"/> -->
-  <link type="application/atom+xml;profile=opds-catalog;kind=navigation" href="/slibrary/epub_library.opds"/>  
+  <link type="application/atom+xml;profile=opds-catalog;kind=navigation" href="https://raw.githubusercontent.com/suisuyy/slibrary/main/epub_library.opds"/>  
   <updated>2016-02-12T00:00:00Z</updated>
   <id>READIUM_OPDS_0123456789_14</id>
 <link type="application/noop" href="DUMMY_ACQUISITION" rel="http://opds-spec.org/acquisition"/>
@@ -83,7 +57,7 @@
 
 
 <entry>
-  <title>more</title>
+  <title>Readium's lib</title>
   <author>
     <name>readium.org</name>
   </author>
