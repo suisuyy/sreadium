@@ -1,102 +1,85 @@
-
-documentis edited with google doc, better to read the original document :
+document is edited with google doc, it is recommended to read the original document:
 
 [https://docs.google.com/document/d/1X-FXNhC4CyYq0W51ok1uEHcL0JQ8f9RhBHXyC2Le6yA/edit?usp=sharing](https://docs.google.com/document/d/1X-FXNhC4CyYq0W51ok1uEHcL0JQ8f9RhBHXyC2Le6yA/edit?usp=sharing)
 
-
-
 # Table of Contents
-
 - [Introduction](#introduction)
-- [Basic use:](#basic-use:)
-- [Deploy](#deploy)
+- [Basic usage](#basic-usage)
+- [Deploying](#deploying)
 - [advantage](#advantage)
-- [Defect:](#defect)
-- [Detailed introduction:](#detailed-introduction:)
+- [defect](#defect)
+- [Detailed introduction](#detailed-introduction)
   * [About readium-js-viewer](#about-readium-js-viewer)
   * [sreadium](#sreadium)
-    + [Mainly added functions:](#mainly-added-functions:)
+    + [Mainly adds](#mainly-adds)
   * [Modification description](#modification-description)
-- [中文简介](#简介)
+- [简介](#简介)
 - [基本使用](#基本使用)
 - [部署](#部署)
 - [优势](#优势)
-- [缺陷：](#缺陷：)
-- [详细介绍：](#详细介绍：)
+- [缺陷](#缺陷)
+- [详细介绍](#详细介绍)
   * [关于readium-js-viewer](#关于readium-js-viewer)
   * [sreadium](#sreadium)
-    + [主要增加功能：](#主要增加功能：)
+    + [主要增加功能](#主要增加功能)
   * [修改说明](#修改说明)
+
 
 
 
 # Introduction
 
-**Readium-js-viewer** is the official epub standard developer The project, a web epub reading tool
+**sreadium** is web Epub reader based on the Readium-js-viewer project
 
-**sreadium**is a web Epub reader based on the magic modification of the Readium-js-viewer project. It
+mainly adds **bookmark function** and **pwa** offline use support, and
 
-mainly increases **bookmark function**and **pwa**offline use support, and
+modified some ui **to be more suitable for mobile phone** use.
 
-modifies some ui **to be****more suitable for mobile phones**.
+**Readium-js-viewer** is the official project of the epub standard developer, a web epub reading tool
 
- 
-
-# Basic use:
+# Basic usage
 
 recommended to use the chrome browser to open
 
 [https://sread.pages.dev/?](https://sread.pages.dev/?)
 
-**Drag**the Epub file to the browser window to start reading, and
+**Drag** the Epub file to the browser window to start reading, and
 
-menu bar on the smartphone **file button**to open
+menu bar on the smartphone **file button** to open
 
- 
+# Deploying
 
-# Deploy
-
-it in the project folder and start the http server 
+in the project folder and starting the http server
 
 # advantage
 
-**web application****s****, which is convenient and fast**
+**of being based on readium, with good compatibility.**
 
-**native app experience**
+**Web application, convenient and fast.**
 
-. After opening sreadium for the first time, it will be automatically cached locally, and then it can be used **offline**(yes, sreadium can), and the loading speed will improve the
+**Native app experience:**
 
-mobile browser. After opening sreadium, there will be **installation option****s**. After installation, you can start
+After opening sreadium for the first time, it will be automatically cached locally, and then it can be used **offline** (yes, sreadium can), At the same time, the loading speed is improved
 
-**readium based on the launcher, w****h****i****ch****h****as****good compatibility****.**
+. The mobile browser will have **an installation option**, it can be started in the launcher.
 
- 
+# defect
 
-# Defect
-
-does not support uploading books
+does not support uploading books.
 
 At present, sreadium, like readium, is a **pure front-end project**, so you cannot add local books to the library.
 
-You can deploy an opds library by imitating /epub_content, and then let readium open it through the url, the format is similar to[https://sreadium .vercel.app/?epubs=](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)[https://your_libraray.opds](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)
+You can deploy an opds library separately by imitating /epub\_content, and then let readium open it through the url, the format is similar to[https://sreadium. vercel.app/?epubs=](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)[https://your\_libraray.opds](https://sreadium.vercel.app/?epubs=https://your_libraray.opds) .
 
-the   
+highlighted part should be replaced accordingly
 
-highlighted part of the link should be replaced accordingly
+annotation is not supported.
 
-. Comments that are not supported
+At present, you can consider using[http://hypothes.is/](http://hypothes.is/)and install the plug-in provided by it, which can realize the function of highlighting and annotating all web content. The
 
-at present can be considered using[http://hypothes.is/](http://hypothes.is/), install the plug-in provided by it, you can achieve all The function of highlighting web content and annotation notes
+follow-up may provide access to a similar Google network Disk to open Epub and save annotations
 
-may be provided in the future. Access similar to Google network disk to open Epub and save annotations
-
- 
-
- 
-
-# Detailed introduction:
-
- 
+# Detailed introduction
 
 ## About readium-js-viewer
 
@@ -106,49 +89,41 @@ The readium-js-viewer project provides a basic web reader, the
 
 main functions are:
 
-**book library**(can not add local files to book library, read Local files can only use drag-drop to drag files to the window)
+**book library**(can not add local files to book library, read Local files can only be dragged to the window using drag-drop)
 
-**r****eading and commenting**(the commenting function is defective)
+**reading and annotation**(the annotation function is defective)
 
-**d****irectory**
+**table**
 
-**sharing****the c****urrent reading page**
+**sharing the current reading page**
 
-**f****ull screen mode**
+**full screen mode**
 
- 
+**Official** Surge deployment
 
-**Official**Surge deployment
-
-[https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds](https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds)
-
- 
+[https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub\_content%2Fepub\_library.opds](https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds)
 
 ## sreadium
 
-adds some important functions on the basis of readium-js-viewer, and optimizes some ui to be more suitable for mobile phones.
+adds some important functions on the basis of readium-js-viewer, optimizes some ui and is more suitable for mobile phones.
 
-### Mainly added functions:
+### Mainly adds
 
-**bookmarks**(unbelievable that readium-js-viewer does not provide bookmark functions),
+**bookmarks** (unbelievable that readium-js-viewer does not provide bookmark function),
 
-**offline use functions**(through service work and Caches)
+**offline use function** (through serviceworker and Caches)
 
-**pwa support similar to the native app experience**(offline use, can be installed, and then opened through the mobile phone launcher, supported by service work and Caches)
+**PWA support similar to native app experience**(offline use, can be installed, and then opened through mobile phone launcher, supported by service work and Caches)
 
-**Other modifications:**
+**Other modifications to**
 
-the table of contents supports folding the
+table of contents support folding
 
-home page library menu bar to hide the add local book button (because it is useless )
+home page library menu bar Hide add local book button (because it is useless)
 
-The top menu bar will not disappear when moved to the bottom (convenient for mobile phones)
+top menu The bar will not disappear when it is moved to the bottom (convenient for mobile phones)
 
-Add a button to open local files (convenient for mobile phones, and the computer can use drag and drop directly) The
-
-upper navigation bar is always on the left
-
- 
+, and a button to open local files is added (convenient for mobile phones, and the computer can use drag and drop directly)
 
 ## Modification description
 
@@ -158,29 +133,27 @@ but a hack modification, which
 
 is to modify the style and html after readium renders the epub content, add some js, and put the main file in /sreadiumhack/
 
-sreadium rarely modify the readium code directly 
+sreadium rarely modify the readium code directly
 
-Readium source code directly Use its released minify js bundle ([https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip](https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip))
+Readium source code directly Use its released minify js bundle
 
+([https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium\_cloud-reader.zip](https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip))
 
-使用说明/readme
+使用说明 / readme
 
-文档使用 google doc 编辑,原文档链接
+文档 使用 google doc 编辑,建议阅读原文档:
 
 [https://docs.google.com/document/d/1X-FXNhC4CyYq0W51ok1uEHcL0JQ8f9RhBHXyC2Le6yA/edit?usp=sharing](https://docs.google.com/document/d/1X-FXNhC4CyYq0W51ok1uEHcL0JQ8f9RhBHXyC2Le6yA/edit?usp=sharing)
 
-
 # 简介
 
+**sreadium** 是基于 Readium-js-viewer 项目魔改的 web Epub 阅读器，
+
+主要增加 **书签功能** 和 **pwa** 离线使用支持,
+
+修改了部分 ui **更适合手机** 使用。
+
 **Readium-js-viewer** 是epub标准制定方官方项目,一个 web epub 阅读工具
-
-**sreadium**是基于Readium-js-viewer项目魔改的 web Epub 阅读器，
-
-主要增加 **书签功能**和 **pwa**离线使用支持,
-
-修改了部分 ui **更适合手机**使用。
-
- 
 
 # 基本使用
 
@@ -188,29 +161,25 @@ Readium source code directly Use its released minify js bundle ([https://github.
 
 [https://sread.pages.dev/?](https://sread.pages.dev/?)
 
-**拖拽**Epub 文件到浏览器窗口开始阅读，
+**拖拽** Epub 文件到浏览器窗口开始阅读，
 
-智能手机点击菜单栏 **文件按钮**打开
-
- 
+智能手机点击菜单栏 **文件按钮** 打开
 
 # 部署
 
-在项目文件夹启动 http server 
+在项目文件夹启动 http server
 
 # 优势
 
-**web 应用，方便快****速**
+**基于 readium，兼容性好.**
 
-**原生app体验**
+**web 应用，方便快速.**
 
-第一次打开 sreadium 后会自动缓存到本地，之后可 **离线使用**（是的，sreadium 能），同时加载速度提升
+**原生app体验:**
+
+第一次打开 sreadium 后会自动缓存到本地，之后可 **离线使用** （是的，sreadium 能），同时加载速度提升
 
 手机浏览器打开 sreadium 后会有 **安装选项**，安装后可在launcher 启动
-
-**基于** **readium，兼容性好**
-
- 
 
 # 缺陷
 
@@ -218,9 +187,9 @@ Readium source code directly Use its released minify js bundle ([https://github.
 
 目前 sreadium 和 readium 一样,是一个 **纯前端项目**，所以不能添加本地图书到书库，
 
-可以仿照 /epub_content 单独部署一个opds书库,然后让readium通过url打开,格式类似[https://sreadium.vercel.app/?epubs=](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)[https://your_libraray.opds](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)
+可以仿照 /epub\_content 单独部署一个opds书库,然后让 readium 通过 url 打开,格式类似[https://sreadium.vercel.app/?epubs=](https://sreadium.vercel.app/?epubs=https://your_libraray.opds)[https://your\_libraray.opds](https://sreadium.vercel.app/?epubs=https://your_libraray.opds) .
 
-链接高亮部分要相应替换
+高亮部分要相应替换
 
 不支持批注
 
@@ -228,53 +197,43 @@ Readium source code directly Use its released minify js bundle ([https://github.
 
 后续可能会提供接入类似谷歌网盘打开 Epub 和保存批注
 
- 
-
- 
-
 # 详细介绍
-
- 
 
 ## 关于readium-js-viewer
 
 [https://github.com/readium/readium-js-viewer](https://github.com/readium/readium-js-viewer)
 
-readium-js-viewer项目提供了一个基本的 web 阅读器,
+readium-js-viewer 项目提供了一个基本的 web 阅读器,
 
 主要功能有：
 
-**书库**（不能添加本地文件到书库，阅读本地文件只能使用drag-drop 拖拽文件到窗口）
+**书库**（不能添加本地文件到书库，阅读本地文件只能使用 drag-drop 拖拽文件到窗口）
 
 **阅读和批注**（批注功能有缺陷）
 
-**目录**
+**目录表**
 
 **分享当前阅读页面**
 
 **全屏模式**
 
- 
+**官方** Surge deployment
 
-**官方**Surge deployment
-
-[https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds](https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds)
-
- 
+[https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub\_content%2Fepub\_library.opds](https://readium-master.surge.sh/?epubs=https%3A%2F%2Freadium.firebaseapp.com%2Fepub_content%2Fepub_library.opds)
 
 ## sreadium
 
 在 readium-js-viewer 基础上增加了一些重要功能，优化了一些ui更适合手机使用
 
-### 主要增加功能：
+### 主要增加功能
 
-**书签**（难以置信readium-js-viewer 不提供书签功能），
+**书签** （难以置信readium-js-viewer 不提供书签功能），
 
-**离线使用功能**（通过service work 和Caches）
+**离线使用功能** （通过 serviceworker 和 Caches）
 
-**类似原生app体验的 pwa 支持**（离线使用，可安装,之后通过手机launcher 打开，由service work 和Caches 提供支持）
+**类似原生 app 体验的 pwa 支持**（离线使用，可安装,之后通过手机 launcher 打开，由 service work 和 Caches 提供支持）
 
-**其它修改：**
+**其它修改**
 
 目录表 支持折叠
 
@@ -284,19 +243,16 @@ readium-js-viewer项目提供了一个基本的 web 阅读器,
 
 增加打开本地文件按钮（方便手机使用，电脑可直接使用拖拽）
 
-上方导航栏始终靠左
-
- 
-
 ## 修改说明
 
 sreadium 是非正常web 开发,
 
-而是一种hack 修改,
+而是一种 hack 修改,
 
-是在readium渲染好epub 内容后修改style 和html ,添加一些js,主要文件放在/sreadiumhack/
+是在readium渲染好 epub 内容后修改 style 和 html ,添加一些js,主要文件放在 /sreadiumhack/
 
-sreadium 很少对readium代码直接修改 
+sreadium 很少对 readium代码直接修改
 
-Readium 源码直接使用其发布的minify js bundle([https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip](https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip))
+Readium 源码直接使用其发布的 minify js bundle
 
+([https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium\_cloud-reader.zip](https://github.com/readium/readium-js-viewer/releases/download/v0.32.0/Readium_cloud-reader.zip))
